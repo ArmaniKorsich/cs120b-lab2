@@ -24,7 +24,7 @@ int main(void) {
 	while (1)
 	{
 		PORTC = 0x00;
-		cntavail = 0x00;
+		cntavail = 0x04;
 		tmpA = PINA & 0x01;
 		if (tmpA == 0x01)
 		{

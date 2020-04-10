@@ -27,13 +27,14 @@ echo ======================================================\n
 echo Running all tests..."\n\n
 
 
-test "PINA: 20; PINB 20; PINC 20  => PORTD: 0xF0 : 0b111100,00 : 60+-3,0b00 "
-setPINA 0x14
-setPINB 0x14
-setPINC 0x14
+test "PINA: 0x55, PINB: 0x02, PINC: 0x03 => PORTD: 0x5A"
+setPINA 0x55
+setPINB 0x02
+setPINC 0x03
 continue 2
-expectPORTD 0xF0
+expectPORTD 0x5A
 checkResult
+
 
 test "PINA: 20; PINB 120; PINC 20  => PORTD: 0xA1 : 0b101000,01 : 160+-3,0b01 "
 setPINA 0x14
@@ -58,15 +59,6 @@ setPINC 0x14
 continue 2
 expectPORTD 0xF3
 checkResult
-
-test "OVERFLOW::: PINA: 200; PINB 100; PINC 20  => PORTD: 0x82 : 0b100000,10 : 64+-3,0b10  (320 - 255 = 64)"
-setPINA 0xC8
-setPINB 0x64
-setPINC 0x14
-continue 2
-expectPORTD 0x82
-checkResult
-
 
 test "PINA: 0; PINB 0; PINC 0  => PORTD: 0x00 : 0b000000,00, 0+-3,0b00 "
 setPINA 0x0

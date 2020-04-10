@@ -19,30 +19,30 @@ int main(void) {
 	PORTC = 0x00;
 
 	unsigned char tmpA = 0x00;
-	unsigned char cntavail = 0x00;
+	unsigned char cntavail = 0x04;
 	
 	while (1)
 	{
 		PORTC = 0x00;
-		cntavail = 0x00;
+		cntavail = 0x04;
 		tmpA = PINA & 0x01;
 		if (tmpA == 0x01)
 		{
-			cntavail = cntavail + 1;
+			cntavail = cntavail - 1;
 		}
 		tmpA = PINA & 0x02;
 		if (tmpA == 0x02) {
-			cntavail = cntavail + 1;
+			cntavail = cntavail - 1;
 		}
 		tmpA = PINA & 0X04;
 		if (tmpA == 0x04) {
-			cntavail = cntavail + 1;
+			cntavail = cntavail - 1;
 		}
 		tmpA = PINA & 0x08;
 		if (tmpA == 0x08) {
-			cntavail = cntavail + 1;
+			cntavail = cntavail - 1;
 		}
-		if (cntavail == 0x04) {
+		if (cntavail == 0x00) {
 			PORTC = PORTC | 0x80; //set 7th bit to 1.
 		}
 		PORTC = PORTC & 0xF0; //set PC3..0 to 0.

@@ -26,57 +26,23 @@
 echo ======================================================\n
 echo Running all tests..."\n\n
 
-
-test "PINA: 20; PINB 20; PINC 20  => PORTD: 0xF0 : 0b111100,00 : 60+-3,0b00 "
-setPINA 0x14
-setPINB 0x14
-setPINC 0x14
-continue 2
-expectPORTD 0xF0
+test "PINA: 0x00 => PORTB: 0x00"
+setPINA 0x00
+continue 5
+expectPORTB 0x00
 checkResult
 
-test "PINA: 20; PINB 120; PINC 20  => PORTD: 0xA1 : 0b101000,01 : 160+-3,0b01 "
-setPINA 0x14
-setPINB 0x78
-setPINC 0x14
-continue 2
-expectPORTD 0xA1
+test "PINA: 0x01 => PORTB: 0x01"
+setPINA 0x01
+continue 5
+expectPORTB 0x01
 checkResult
 
-test "PINA: 20; PINB 120; PINC 100  => PORTD: 0xF1 : 0b111100,01 : 240+-3,0b01 "
-setPINA 0x14
-setPINB 0x78
-setPINC 0x64
-continue 2
-expectPORTD 0xF1
+test "PINA: 0x02 => PORTB: 0x00"
+setPINA 0x00
+continue 5
+expectPORTB 0x00
 checkResult
-
-test "PINA: 101; PINB 120; PINC 20  => PORTD: 0xF3 : 0b111100,11 : 240+-3,0b11 "
-setPINA 0x65
-setPINB 0x78
-setPINC 0x14
-continue 2
-expectPORTD 0xF3
-checkResult
-
-test "OVERFLOW::: PINA: 200; PINB 100; PINC 20  => PORTD: 0x82 : 0b100000,10 : 64+-3,0b10  (320 - 255 = 64)"
-setPINA 0xC8
-setPINB 0x64
-setPINC 0x14
-continue 2
-expectPORTD 0x82
-checkResult
-
-
-test "PINA: 0; PINB 0; PINC 0  => PORTD: 0x00 : 0b000000,00, 0+-3,0b00 "
-setPINA 0x0
-setPINB 0x0
-setPINC 0x0
-continue 2
-expectPORTD 0x00
-checkResult
-
-
 
 # Report on how many tests passed/tests ran
 set $passed=$tests-$failed

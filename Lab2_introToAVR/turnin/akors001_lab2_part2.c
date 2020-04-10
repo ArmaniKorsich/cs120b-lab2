@@ -15,26 +15,35 @@
 int main(void) {
     /* Insert DDR and PORT initializations */
 	DDRA = 0x00;
-	DDRB = 0xFF;
-	PORTB = 0X00;
+	DDRC = 0xFF;
+	PORTC = 0x00;
 
 	unsigned char tmpA = 0x00;
-	unsigned char tmpB = 0x00;
+	unsigned char cntavail = 0x00;
 	
 	while (1)
 	{
-		PORTB = 0x00;
-		tmpA = PINA & 0x03;
+		PORTC = 0x00;
+		cntavail = 0x00;
+		tmpA = PINA & 0x01;
 		if (tmpA == 0x01)
 		{
-			tmpB = (0x01);
+			cntavail = cntavail + 1;
 		}
-		else
-		{
-			tmpB = (0x00);
+		tmpA = PINA & 0x02;
+		if (tmpA == 0x02) {
+			cntavail = cntavail + 1;
 		}
-		PORTB = tmpB;
-		
+		tmpA = PINA & 0X04;
+		if (tmpA == 0x04) {
+			cntavail = cntavail + 1;
+		}
+		tmpA = PINA & 0x08;
+		if (tmpA == 0x08) {
+			cntavail = cntavail + 1;
+		}
+		PORTC = cntavail;			
+
 	}
 	return 0;
 }
